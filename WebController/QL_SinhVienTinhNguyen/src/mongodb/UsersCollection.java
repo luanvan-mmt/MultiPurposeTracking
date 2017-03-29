@@ -171,6 +171,15 @@ public class UsersCollection {
 				doc.getInteger("role"));
 	}
 	
+	public String autoCreateUser(String id) {
+		// Khoi tao mat khau ngau nhien gom 8 ky tu
+		String password = "@43kj32*";
+		
+		saveUser(new User(id, password, 3));
+		
+		return password;
+	}
+	
 	/**
 	 * Ham xoa collection User
 	 * @throws NullPointerException

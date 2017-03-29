@@ -8,6 +8,7 @@ import mongodb.UsersCollection;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -18,7 +19,7 @@ public class Login {
 
 	// ------------ CREATE LOGIN FORM ------------------------------
 	
-	@RequestMapping(value = "/form")
+	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public ModelAndView loginForm() {
 		// Khoi tao doi tuong User de su dung cho Form Login
 		User user = new User();
@@ -28,8 +29,8 @@ public class Login {
 	
 	// ------------ HANDLE LOGIN FORM ------------------------------
 	
-	@RequestMapping(value = "/handle")
-	public ModelAndView handleLogin(@ModelAttribute("SM") User user, HttpSession session) {
+	@RequestMapping(value = "/handle", method = RequestMethod.POST)
+	public ModelAndView handleLogin(@ModelAttribute("User") User user, HttpSession session) {
 		
 		// Lay password trong db theo userName:
 		String pwd = null;
@@ -57,6 +58,12 @@ public class Login {
 		ModelAndView model = new ModelAndView("login-page", "User", user)
 			.addObject("message", "Tài khoản hoặc Mật khẩu không đúng.");
 		return model;
+	}
+	
+	@RequestMapping(value = "/register")
+	public String redirectRegister() {
+		
+		return "redirect:/register/form.html";
 	}
 	
 }
