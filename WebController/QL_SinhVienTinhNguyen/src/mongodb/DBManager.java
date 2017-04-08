@@ -7,7 +7,7 @@ import com.mongodb.client.MongoDatabase;
 
 public class DBManager {
 	
-	public static final String HOST = "192.168.1.10";
+	public static final String HOST = "127.0.0.1";
 	public static final int PORT = 27017;
 	// private static final String DB_USERNAME = "";
 	// private static final String DB_PASSWORD = "";
