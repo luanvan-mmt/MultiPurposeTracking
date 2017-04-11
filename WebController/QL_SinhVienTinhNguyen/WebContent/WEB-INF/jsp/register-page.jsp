@@ -34,7 +34,7 @@ function setRegisterForm() {
 				<td style="width: 245px;" valign="top">
 					<div class="verticalMenu" align="center">
 						MENU <br>
-						<a href="login.html"> << Quay lai</a>
+						<a href="login.html">Quay lai</a>
 					</div>
 				</td>
 				

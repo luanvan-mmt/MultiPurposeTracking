@@ -13,6 +13,7 @@
 	
 	<div class="container">
 		<h1>TRANG CHỦ</h1>
+		<a href="voiceCall.html">Voice call test</a>
 	</div>
 	
 	<jsp:include page="footer.jsp"/>

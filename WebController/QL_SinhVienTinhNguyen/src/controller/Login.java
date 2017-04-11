@@ -51,7 +51,7 @@ public class Login {
 			session.setAttribute("User", user);
 			
 			// -> Chuyen sang Trang chu
-			return new ModelAndView("home-page");
+			return new ModelAndView("redirect:/homepage/index.html");
 		}
 		
 		// Else -> Quay lai trang Login + Message
