@@ -162,6 +162,10 @@ function setRegisterForm() {
 								</tr>
 							</table>
 						</form:form>
+						
+						<!-- LINK EMAIL -->
+						<a href="sendEmail.html?email=cqminh1995@gmail.com">Send Password</a>
+						<a href="dangky.html?userName=tram">Send Password</a>
 					</div>
 					<div style="margin-left: 10px;">
 						<img class="title-login" src="../img/register-shadow.png" >

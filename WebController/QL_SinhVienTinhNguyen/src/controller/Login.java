@@ -66,4 +66,26 @@ public class Login {
 		return "redirect:/register/form.html";
 	}
 	
+	@RequestMapping(value = "/map")
+	public String openMap() {
+		
+		return "map";
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 

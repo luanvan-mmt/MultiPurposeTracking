@@ -73,6 +73,7 @@
 				</td>
 			</tr>
 		</table>
+		<a href="map.html">Open Map</a>
 	</div>
 	
 	<jsp:include page="footer.jsp"/>

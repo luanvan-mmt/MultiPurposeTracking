@@ -1,5 +1,9 @@
 package controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import model.Staff;
 import model.Student;
 import model.User;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import restapi.NetClientGet;
 import services.SendEmail;
 
 @Controller
@@ -61,6 +66,38 @@ public class Regsiter {
 	public String quayLai() {
 		
 		return "redirect:/login/form.html";
+	}
+	
+	@RequestMapping(value = "/sendEmail")
+	public String sendPassWordToEmail(HttpServletRequest request) {
+		// String StudentId = request.getParameter("studentId");
+		String email = request.getParameter("email");
+		
+		SendEmail.sendEmail(email, "123456789");
+		
+		return "redirect:/login/form.html";
+	}
+	
+	// ------------ REGISTER ON ANDROID ------------------------------
+	
+	@RequestMapping(value = "/dangky", method = RequestMethod.GET)
+	public void registerAndroid(HttpServletRequest request) {
+		String userNameRequest = request.getParameter("userName");
+		
+		try {
+
+			NetClientGet net = new NetClientGet();
+			String jsonArr = net.sendGet("http://192.168.12.124:8008/user/tram");
+
+			List<String> userNames = net.getUserNames(jsonArr);
+			String userName = userNames.get(0);
+			System.out.println("userName kaa: " + userName);
+			
+			System.out.println("userName Requested: " + userNameRequest);
+			System.out.println(userName.equals(userNameRequest));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

@@ -1,8 +1,3 @@
-    // to avoid caching
-    //if (window.location.href.indexOf("svn=") == -1) {
-    //    window.location.href += (window.location.href.indexOf("?") == -1 ? "svn=236" : "&svn=229");
-    //}
-
     var sTransferNumber;
     var oRingTone, oRingbackTone;
     var oSipStack, oSipSessionRegister, oSipSessionCall, oSipSessionTransferCall;
@@ -290,7 +285,7 @@
                     impu: txtPublicIdentity.value,
                     password: txtPassword.value,
                     display_name: txtDisplayName.value,
-                    websocket_proxy_url: ('ws://192.168.1.200:5060'),
+                    websocket_proxy_url: ('ws://' + txtRealm.value + ':5060/ws'),
                     // outbound_proxy_url: ('192.168.1.200'),
                     ice_servers: (window.localStorage ? window.localStorage.getItem('org.doubango.expert.ice_servers') : null),
                     enable_rtcweb_breaker: (window.localStorage ? window.localStorage.getItem('org.doubango.expert.enable_rtcweb_breaker') == "true" : false),
