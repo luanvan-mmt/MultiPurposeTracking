@@ -545,6 +545,7 @@
                 // o_elt_video.style.opacity = 0;
             }
             fullScreen(false);
+
         }
     }
 

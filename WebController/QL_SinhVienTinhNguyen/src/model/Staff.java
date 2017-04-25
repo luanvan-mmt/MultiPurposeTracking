@@ -9,7 +9,7 @@ public class Staff {
 	private String address;
 	private String idNumber;
 	private String email;
-	
+
 	public Staff() {
 		super();
 	}
@@ -90,6 +90,5 @@ public class Staff {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
 }
