@@ -2,11 +2,13 @@ package controller;
 
 import javax.servlet.http.HttpSession;
 
-import model.Staff;
-import model.Student;
-import model.User;
-import mongodb.StaffCollection;
-import mongodb.StudentCollection;
+import model.CanBo;
+import model.SIPAccount;
+import model.SinhVien;
+import model.NguoiDung;
+import mongodb.SIPAccountCollection;
+import mongodb.CanBoCollection;
+import mongodb.SinhVienCollection;
 import mongodb.UserCollection;
 
 import org.springframework.stereotype.Controller;
@@ -26,7 +28,7 @@ public class Login {
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public ModelAndView loginForm() {
 		// Khoi tao doi tuong User de su dung cho Form Login
-		User user = new User();
+		NguoiDung user = new NguoiDung();
 
 		return new ModelAndView("login-page", "User", user);
 	}
@@ -34,10 +36,10 @@ public class Login {
 	// ------------ HANDLE LOGIN FORM ------------------------------
 
 	@RequestMapping(value = "/handle", method = RequestMethod.POST)
-	public ModelAndView handleLogin(@ModelAttribute("User") User user,
+	public ModelAndView handleLogin(@ModelAttribute("User") NguoiDung user,
 			HttpSession session) {
 		ModelAndView model = new ModelAndView();
-		User localUser = null;
+		NguoiDung localUser = null;
 
 		try {
 			// Lay User tu CSDL theo userName:
@@ -48,27 +50,32 @@ public class Login {
 
 				// If : Password trung khop -> Luu User vao session
 				session.setAttribute("User", localUser);
+				
+				// Lay Sip Account va luu vao session
+				SIPAccountCollection sipColl = new SIPAccountCollection();
+				SIPAccount sipAccount = sipColl.getInactiveAccount();
+				session.setAttribute("sipAccount", sipAccount);
 
 				// Kiem tra xem User la Can bo hay Sinh vien:
 				int role = localUser.getRole();
 
 				if (role == 2) { // Neu User la Can Bo
 					// Lay thong tin Can bo tu CSDL
-					StaffCollection staffColl = new StaffCollection();
-					Staff staff = staffColl.getByFieldName("staffId",
+					CanBoCollection staffColl = new CanBoCollection();
+					CanBo canBo = staffColl.getByFieldName("mscb",
 							localUser.getUserName());
 
 					// Luu thong tin Can bo vao Session
-					session.setAttribute("Staff", staff);
+					session.setAttribute("CanBo", canBo);
 					
 				} else if (role == 3) { // Neu User la Sinh vien
 					// Lay thong tin Sinh vien tu CSDL
-					StudentCollection studentColl = new StudentCollection();
-					Student student = studentColl.getByFieldName("studentId",
+					SinhVienCollection studentColl = new SinhVienCollection();
+					SinhVien sinhVien = studentColl.getByFieldName("mssv",
 							localUser.getUserName());
 					
 					// Luu thong tin Sinh vien vao Session
-					session.setAttribute("Student", student);
+					session.setAttribute("SinhVien", sinhVien);
 					
 				} else if (role == 1) {
 
@@ -84,6 +91,7 @@ public class Login {
 			model.addObject("message", "Tài khoản hoặc Mật khẩu không đúng.");
 		} catch (NullPointerException e) {
 			System.out.println("User khong ton tai");
+			e.printStackTrace();
 
 			model.setViewName("login-page");
 			model.addObject("User", user);

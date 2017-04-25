@@ -20,10 +20,6 @@ public abstract class CollectionManager<T> {
 		switchToDB();
 		// createCollIfNotExist();
 	}
-
-	public void switchToDB() {
-		db = DBManager.getDB();
-	}
 	
 	// CAC HAM CAN DINH NGHIA LAI .................
 	
@@ -56,6 +52,10 @@ public abstract class CollectionManager<T> {
 	abstract public void update(T obj);
 	
 	// ...... CAC HAM CAN DINH NGHIA LAI
+	
+	public void switchToDB() {
+		db = DBManager.getDB();
+	}
 	
 	/**
 	 * Kiem tra Collection co ton tai hay chua
