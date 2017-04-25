@@ -19,7 +19,7 @@ public class DBManager {
 	static {
 		try {
 			mongoClient = new MongoClient(HOST, PORT);
-			db = mongoClient.getDatabase("kaa");
+			db = mongoClient.getDatabase("svtn");
 			System.out.println("Connected to MongoDB");
 		} catch (MongoException e) {
 			System.out.println("Connect to MongoDB failed! " + e.getMessage());

@@ -11,6 +11,8 @@
 <body>
 	<jsp:include page="header.jsp"/>
 	
+	<%  %>
+	
 	<div class="container">
 		<h1>TRANG CHỦ</h1>
 		<a href="voiceCall.html">Voice call test</a>
