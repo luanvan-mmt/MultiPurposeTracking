@@ -39,8 +39,9 @@
 							</div>
 						</form:form>
 						<div class="link" align="left">
+							<%String contextPath = request.getContextPath(); %>
 							<a href="#">Quên mật khẩu?</a> <br>
-							<a href="register.html">
+							<a href="<%=contextPath%>/register/form.html">
 								Đăng ký tài khoản mới</a>
 						</div>
 					</div>

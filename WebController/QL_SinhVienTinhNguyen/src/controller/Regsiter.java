@@ -27,10 +27,12 @@ public class Regsiter {
 	// ------------ CREATE REGISTER FORM ------------------------------
 
 	@RequestMapping(value = "/form")
-	public ModelAndView registerForm() {
+	public ModelAndView registerForm(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("register-page");
 		model.addObject("Student", new SinhVien());
 		model.addObject("Staff", new CanBo());
+		
+		request.setAttribute("pageName", "register-page");
 
 		return model;
 	}
@@ -40,6 +42,9 @@ public class Regsiter {
 	@RequestMapping(value = "/handle-student", method = RequestMethod.POST)
 	public ModelAndView handleStudentRegister(
 			@ModelAttribute("Student") SinhVien student) {
+		
+		System.out.println(student.getHoTen());
+		
 		studentColl.save(student);
 
 		// Khoi tao user voi password ngau nhien

@@ -40,10 +40,15 @@ public class Login {
 			HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		NguoiDung localUser = null;
+		
+		System.out.println(user.getUserName());
 
 		try {
 			// Lay User tu CSDL theo userName:
 			localUser = userColl.getByFieldName("userName", user.getUserName());
+			
+			System.out.println(user.getUserName());
+			System.out.println(localUser.getUserName());
 
 			// Kiem tra passwod co trung khop khong?
 			if (user.getPassword().equals(localUser.getPassword())) {
@@ -82,7 +87,7 @@ public class Login {
 				}
 
 				// -> Chuyen sang Trang chu
-				return new ModelAndView("redirect:/homepage/index.html");
+				return new ModelAndView("redirect:/home-page/index.html");
 			}
 
 			// Else -> Quay lai trang Login + Message
@@ -100,11 +105,16 @@ public class Login {
 
 		return model;
 	}
-
-	@RequestMapping(value = "/register")
-	public String redirectRegister() {
-
-		return "redirect:/register/form.html";
+	
+	// LOGOUT:	
+	@RequestMapping(value = "/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.removeAttribute("CanBo");
+		session.removeAttribute("SinhVien");
+		session.removeAttribute("sipAccount");
+		session.removeAttribute("User");
+		
+		return new ModelAndView("login-page").addObject("User", new NguoiDung());
 	}
 
 	@RequestMapping(value = "/map")
@@ -113,5 +123,9 @@ public class Login {
 		return "map";
 	}
 }
+
+
+
+
 
 // 

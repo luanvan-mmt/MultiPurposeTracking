@@ -75,10 +75,10 @@ public class SIPAccountCollection extends CollectionManager<SIPAccount> {
 
 	public static void main(String[] args) {
 		SIPAccountCollection a = new SIPAccountCollection();
-		// a.saveMany();
+		 a.saveMany();
 
 		// a.update(new SIPAccount("user1", "user1user1", false));
-		System.out.println(a.getInactiveAccount().getUserName());
+		// System.out.println(a.getInactiveAccount().getUserName());
 	}
 
 }

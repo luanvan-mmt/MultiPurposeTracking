@@ -13,16 +13,15 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
+	
+	<%String pageName = "register-page"; %>
 
 	<div class="container">
 		<table>
 			<tr>
 				<!-- MENU -->
 				<td style="width: 245px;" valign="top">
-					<div class="verticalMenu" align="center">
-						MENU <br>
-						<a href="login.html">Quay lai</a>
-					</div>
+					<jsp:include page="vertical-menu.jsp"></jsp:include>
 				</td>
 
 				<!-- CONTENT -->
@@ -61,7 +60,6 @@
 										<form:select path="gioiTinh">
 											<form:option value="nam">Nam</form:option>
 											<form:option value="nu">Nữ</form:option>
-											<form:option value="other">Khác</form:option>
 										</form:select>
 									</td>
 								</tr>
@@ -121,7 +119,6 @@
 										<form:select path="gioiTinh">
 											<form:option value="male">Nam</form:option>
 											<form:option value="female">Nữ</form:option>
-											<%-- <form:option value="other">Khác</form:option> --%>
 										</form:select>
 									</td>
 								</tr>
@@ -149,10 +146,6 @@
 								</tr>
 							</table>
 						</form:form>
-
-						<!-- LINK EMAIL -->
-						<a href="sendEmail.html?email=cqminh1995@gmail.com">Send Password</a>
-						<a href="dangky.html?userName=tram">Send Password</a>
 					</div>
 					<div style="margin-left: 10px;">
 						<img class="title-login" src="../img/register-shadow.png" >

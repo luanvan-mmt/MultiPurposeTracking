@@ -69,15 +69,14 @@ public class SinhVienCollection extends CollectionManager<SinhVien> {
 		Document document = new Document();
 		
 		// Dua du lieu voi key va value vao docment
-		document.append("studentId", obj.getMssv());
-		document.append("fullName", obj.getHoTen());
-		document.append("sex", obj.getGioiTinh());
-		document.append("phone", obj.getSdt());
-		document.append("address", obj.getDiaChi());
-		document.append("idNumber", obj.getCmnd());
+		document.append("mssv", obj.getMssv());
+		document.append("hoTen", obj.getHoTen());
+		document.append("gioiTinh", obj.getGioiTinh());
+		document.append("sdt", obj.getSdt());
+		document.append("diaChi", obj.getDiaChi());
+		document.append("cmnd", obj.getCmnd());
 		document.append("email", obj.getEmail());
-		document.append("classCode", obj.getMaLop());
-		// document.append("leader", student.isLeader());
+		document.append("maLop", obj.getMaLop());
 		
 		// Insert vao mongodb
 		collection.insertOne(document);
