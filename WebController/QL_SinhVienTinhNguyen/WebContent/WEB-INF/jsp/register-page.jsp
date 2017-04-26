@@ -13,16 +13,15 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"/>
+	
+	<%String pageName = "register-page"; %>
 
 	<div class="container">
 		<table>
 			<tr>
 				<!-- MENU -->
 				<td style="width: 245px;" valign="top">
-					<div class="verticalMenu" align="center">
-						MENU <br>
-						<a href="login.html">Quay lai</a>
-					</div>
+					<jsp:include page="vertical-menu.jsp"></jsp:include>
 				</td>
 
 				<!-- CONTENT -->
@@ -49,33 +48,32 @@
 							<table class="tblRegister">
 								<tr>
 									<td>Mã số sinh viên:</td>
-									<td><form:input path="studentId" placeholder="Nhập mã số sinh viên"/></td>
+									<td><form:input path="mssv" placeholder="Nhập mã số sinh viên"/></td>
 								</tr>
 								<tr>
 									<td>Họ tên sinh viên:</td>
-									<td><form:input path="fullName" placeholder="Nhập họ tên của bạn"/></td>
+									<td><form:input path="hoTen" placeholder="Nhập họ tên của bạn"/></td>
 								</tr>
 								<tr>
 									<td>Giới tính:</td>
 									<td>
-										<form:select path="sex">
-											<form:option value="male">Nam</form:option>
-											<form:option value="female">Nữ</form:option>
-											<form:option value="other">Khác</form:option>
+										<form:select path="gioiTinh">
+											<form:option value="nam">Nam</form:option>
+											<form:option value="nu">Nữ</form:option>
 										</form:select>
 									</td>
 								</tr>
 								<tr>
 									<td>Số điện thoại:</td>
-									<td><form:input path="phone" placeholder="Nhập số điện thoại của bạn"/></td>
+									<td><form:input path="sdt" placeholder="Nhập số điện thoại của bạn"/></td>
 								</tr>
 								<tr>
 									<td>Địa chỉ:</td>
-									<td><form:input path="address" placeholder="Nhập địa chỉ của bạn"/></td>
+									<td><form:input path="diaChi" placeholder="Nhập địa chỉ của bạn"/></td>
 								</tr>
 								<tr>
 									<td>CMND:</td>
-									<td><form:input path="idNumber" placeholder="Nhập số cmnd của bạn"/></td>
+									<td><form:input path="cmnd" placeholder="Nhập số cmnd của bạn"/></td>
 								</tr>
 								<tr>
 									<td>Email:</td>
@@ -83,7 +81,7 @@
 								</tr>
 								<tr>
 									<td>Mã lớp:</td>
-									<td><form:input path="classCode" placeholder="VD: DI13Y9A2"/></td>
+									<td><form:input path="maLop" placeholder="VD: DI13Y9A2"/></td>
 								</tr>
 								<tr>
 									<td></td>
@@ -99,16 +97,16 @@
 							<table class="tblRegister">
 								<tr>
 									<td>Mã số cán bộ:</td>
-									<td><form:input path="staffId" placeholder="Nhập mã số cán bộ"/></td>
+									<td><form:input path="mscb" placeholder="Nhập mã số cán bộ"/></td>
 								</tr>
 								<tr>
 									<td>Họ tên cán bộ:</td>
-									<td><form:input path="fullName" placeholder="Nhập họ tên của bạn"/></td>
+									<td><form:input path="hoTen" placeholder="Nhập họ tên của bạn"/></td>
 								</tr>
 								<tr>
 									<td>Chức vụ:</td>
 									<td>
-										<form:select path="position">
+										<form:select path="chucVu">
 											<form:option value="nhan-vien">Nhân viên văn phòng</form:option>
 											<form:option value="giang-vien">Giảng viên</form:option>
 											<form:option value="other">Khác</form:option>
@@ -118,24 +116,23 @@
 								<tr>
 									<td>Giới tính:</td>
 									<td>
-										<form:select path="sex">
+										<form:select path="gioiTinh">
 											<form:option value="male">Nam</form:option>
 											<form:option value="female">Nữ</form:option>
-											<%-- <form:option value="other">Khác</form:option> --%>
 										</form:select>
 									</td>
 								</tr>
 								<tr>
 									<td>Số điện thoại:</td>
-									<td><form:input path="phone" placeholder="Nhập số điện thoại của bạn"/></td>
+									<td><form:input path="sdt" placeholder="Nhập số điện thoại của bạn"/></td>
 								</tr>
 								<tr>
 									<td>Địa chỉ:</td>
-									<td><form:input path="address" placeholder="Nhập địa chỉ của bạn"/></td>
+									<td><form:input path="diaChi" placeholder="Nhập địa chỉ của bạn"/></td>
 								</tr>
 								<tr>
 									<td>CMND:</td>
-									<td><form:input path="idNumber" placeholder="Nhập số cmnd của bạn"/></td>
+									<td><form:input path="cmnd" placeholder="Nhập số cmnd của bạn"/></td>
 								</tr>
 								<tr>
 									<td>Email:</td>
@@ -149,10 +146,6 @@
 								</tr>
 							</table>
 						</form:form>
-
-						<!-- LINK EMAIL -->
-						<a href="sendEmail.html?email=cqminh1995@gmail.com">Send Password</a>
-						<a href="dangky.html?userName=tram">Send Password</a>
 					</div>
 					<div style="margin-left: 10px;">
 						<img class="title-login" src="../img/register-shadow.png" >

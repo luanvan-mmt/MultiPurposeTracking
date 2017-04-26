@@ -1,10 +1,5 @@
 @CHARSET "UTF-8";
 
-.verticalMenu {
-	height: 500px;
-	border: 1px solid #268AFF;
-}
-
 .registerContent {
 	margin-left: 10px;
 	width: 670px;

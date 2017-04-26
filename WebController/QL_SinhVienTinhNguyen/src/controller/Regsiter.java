@@ -2,10 +2,10 @@ package controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import model.Staff;
-import model.Student;
-import mongodb.StaffCollection;
-import mongodb.StudentCollection;
+import model.CanBo;
+import model.SinhVien;
+import mongodb.CanBoCollection;
+import mongodb.SinhVienCollection;
 import mongodb.UserCollection;
 
 import org.springframework.stereotype.Controller;
@@ -20,17 +20,19 @@ import services.SendEmail;
 @RequestMapping(value = "/register")
 public class Regsiter {
 
-	private StudentCollection studentColl = new StudentCollection();
-	private StaffCollection staffColl = new StaffCollection();
+	private SinhVienCollection studentColl = new SinhVienCollection();
+	private CanBoCollection staffColl = new CanBoCollection();
 	private UserCollection userColl = new UserCollection();
 
 	// ------------ CREATE REGISTER FORM ------------------------------
 
 	@RequestMapping(value = "/form")
-	public ModelAndView registerForm() {
+	public ModelAndView registerForm(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("register-page");
-		model.addObject("Student", new Student());
-		model.addObject("Staff", new Staff());
+		model.addObject("Student", new SinhVien());
+		model.addObject("Staff", new CanBo());
+		
+		request.setAttribute("pageName", "register-page");
 
 		return model;
 	}
@@ -39,11 +41,14 @@ public class Regsiter {
 
 	@RequestMapping(value = "/handle-student", method = RequestMethod.POST)
 	public ModelAndView handleStudentRegister(
-			@ModelAttribute("Student") Student student) {
+			@ModelAttribute("Student") SinhVien student) {
+		
+		System.out.println(student.getHoTen());
+		
 		studentColl.save(student);
 
 		// Khoi tao user voi password ngau nhien
-		String password = userColl.autoCreateUser(student.getStudentId(), 3);
+		String password = userColl.autoCreateUser(student.getMssv(), 3);
 
 		// Gui password dang nhap he thong qua email
 		SendEmail.sendEmail(student.getEmail(), password);
@@ -54,11 +59,11 @@ public class Regsiter {
 	}
 
 	@RequestMapping(value = "/handle-staff", method = RequestMethod.POST)
-	public ModelAndView handleStaffRegister(@ModelAttribute("Staff") Staff staff) {
+	public ModelAndView handleStaffRegister(@ModelAttribute("Staff") CanBo staff) {
 		staffColl.save(staff);
 
 		// Khoi tao User:
-		String password = userColl.autoCreateUser(staff.getStaffId(), 2);
+		String password = userColl.autoCreateUser(staff.getMscb(), 2);
 
 		// Gui password:
 		SendEmail.sendEmail(staff.getEmail(), password);

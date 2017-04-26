@@ -4,7 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- LOAD JAVASCRIP LIBRARIES -->
 <script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+
+<!-- LOAD STYLE -->
+<link type="text/css" rel="../css/vertical-menu.css">
+
 <style type="text/css">
 body, html {
 	font-family: 'Arial', sans-serif;
@@ -38,6 +44,22 @@ body, html {
 	padding: 5px 0;
 	margin: 0;
 	color: white;
+}
+
+.content {
+	margin-left: 10px;
+	width: 687px;
+}
+.content h3 {
+	margin-top: 0;
+	padding: 15px 0 5px 0;
+}
+
+input[type=text], select {
+	font-size: 14px;
+}
+input[type=button], input[type=submit], select {
+	cursor: pointer;
 }
 </style>
 </head>

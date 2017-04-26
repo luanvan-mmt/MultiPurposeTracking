@@ -1,16 +1,16 @@
 package model;
 
-public class User {
+public class NguoiDung {
 	
 	private String userName;
 	private String password;
 	private int role; // 1: admin, 2: can bo, 3: sinh vien
 	
-	public User() {
+	public NguoiDung() {
 		super();
 	}
 
-	public User(String userName, String password, int role) {
+	public NguoiDung(String userName, String password, int role) {
 		super();
 		this.userName = userName;
 		this.password = password;

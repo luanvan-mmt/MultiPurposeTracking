@@ -10,7 +10,7 @@
 	height: 100%;
 	background-color: #268AFF;
 	margin: 0 auto;
-	font-size: 12px;
+	font-size: 13px;
 	color: white;
 	padding: 5px 0;
 }
