@@ -97,6 +97,10 @@
 					</tr>
 				<%if(role == 3 || role == 2) { %>
 					<tr>
+						<td><a href="<%=contextPath%>/chat/init.html">Chat</a></td>
+						<td>></td>
+					</tr>
+					<tr>
 						<td><a href="<%=contextPath%>/login/logout.html">Đăng xuất</a></td>
 						<td>></td>
 					</tr>

@@ -6,16 +6,13 @@ import javax.mail.internet.*;
 
 public class SendEmail {
 	
-	private static final String USER_NAME = "contact.htql.svtn@gmail.com";
-	private static final String PASSWORD = "quanlysinhvientinhnguyen";
-	
 	public SendEmail() {
 	}
 	
 	public static void sendEmail(String recipient, String message) {
 		final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
 		// Get a Properties object
-		Properties props = System.getProperties();
+		java.util.Properties props = System.getProperties();
 		props.setProperty("mail.smtp.host", "smtp.gmail.com");
 		props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
 		props.setProperty("mail.smtp.socketFactory.fallback", "false");
@@ -30,8 +27,9 @@ public class SendEmail {
 			Session session = Session.getDefaultInstance(props,
 					new Authenticator() {
 						protected PasswordAuthentication getPasswordAuthentication() {
-							return new PasswordAuthentication(USER_NAME,
-									PASSWORD);
+							return new PasswordAuthentication(
+									Properties.prop.getProperty("email-admin"),
+									Properties.prop.getProperty("email-password"));
 						}
 					});
 

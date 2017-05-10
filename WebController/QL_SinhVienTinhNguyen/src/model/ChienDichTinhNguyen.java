@@ -12,8 +12,8 @@ public class ChienDichTinhNguyen {
 	private int soLuong;
 	private String yeuCau;
 	private String keHoach;
-
-	// private String file;
+	private Date bdDangKy;
+	private Date ktDangKy;
 
 	public ChienDichTinhNguyen() {
 		super();
@@ -31,6 +31,38 @@ public class ChienDichTinhNguyen {
 		this.soLuong = soLuong;
 		this.yeuCau = yeuCau;
 		this.keHoach = keHoach;
+	}
+
+	public ChienDichTinhNguyen(int maChienDich, String diaDiem, String mucDich,
+			Date thoiGianBD, Date thoiGianKT, int soLuong, String yeuCau,
+			String keHoach, Date bdDangKy, Date ktDangKy) {
+		super();
+		this.maChienDich = maChienDich;
+		this.diaDiem = diaDiem;
+		this.mucDich = mucDich;
+		this.thoiGianBD = thoiGianBD;
+		this.thoiGianKT = thoiGianKT;
+		this.soLuong = soLuong;
+		this.yeuCau = yeuCau;
+		this.keHoach = keHoach;
+		this.bdDangKy = bdDangKy;
+		this.ktDangKy = ktDangKy;
+	}
+
+	public Date getBdDangKy() {
+		return bdDangKy;
+	}
+
+	public void setBdDangKy(Date bdDangKy) {
+		this.bdDangKy = bdDangKy;
+	}
+
+	public Date getKtDangKy() {
+		return ktDangKy;
+	}
+
+	public void setKtDangKy(Date ktDangKy) {
+		this.ktDangKy = ktDangKy;
 	}
 
 	public int getMaChienDich() {

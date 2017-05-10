@@ -1,0 +1,156 @@
+@CHARSET "UTF-8";
+
+body, html {
+	font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    background-color: #fafafa;
+}
+
+.container {
+	width: 1024px;
+	margin: 0 auto;
+	background: white;
+	padding-top: 10px;
+}
+
+table {
+	width: 100%;
+}
+
+table tr td.left {
+	width: 395px;
+}
+
+.login {
+	background: #f1f1f1;
+	width: 380px;
+}
+
+.userName, .password {
+	width: 300px;
+	height: 40px;
+	padding-left: 50px;
+	border: solid 1px #ccc;
+	font-size: 14px;
+	background-color: white;
+}
+
+.userName:FOCUS, .password:FOCUS {
+	border-color: #268AFF;
+}
+
+.btnLogin {
+	background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+	border: 1px solid white;
+	width: 150px;
+	height: 40px;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.userName, .password, .btnLogin {
+	border-radius: 5px;
+	margin: 5px auto;
+}
+ 
+.dotTN {
+	border: 1px solid #268AFF;
+	border-radius: 5px;
+	margin-left: 10px;
+	height: 500px;
+}
+
+.dotTN h3 {
+	padding: 5px 0;
+	margin: 0;
+	background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+	color: white;
+}
+
+.dotTN table {
+	width: 95%;
+}
+
+tr.head {
+	font-size: 13px;
+	color: #333;
+	font-weight: bold;
+}
+
+.clickable-row , .seeAll{
+	font-size: 12px;
+	color: #268AFF;
+}
+
+.seeAll {
+	font-size: 14px;
+	text-decoration: none;
+}
+
+tr.clickable-row:hover {
+	font-style: italic;
+	color: red;
+}
+
+.login-shadow {
+	width: 380px;
+}
+
+.title-login {
+	width: 425px;
+	margin: 0;
+}
+
+.note {
+	margin-top: 30px;
+	margin-left: 20px;
+	color: red;
+}
+
+.note p {
+	font-size: 14px;
+	color: #268AFF;
+}
+
+.error {
+	color: red;
+	font-size: 13px;
+	font-style: italic;
+}
+
+.link {
+	padding-left: 20px;
+	margin-top: 10px;
+	padding-bottom: 10px;
+}
+
+.link a {
+	color: #268AFF;
+	text-decoration: none;
+	font-size: 14px;
+}
+
+.link a:hover {
+	font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* end */

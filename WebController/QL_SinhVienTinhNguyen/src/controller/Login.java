@@ -3,13 +3,11 @@ package controller;
 import javax.servlet.http.HttpSession;
 
 import model.CanBo;
-import model.SIPAccount;
 import model.SinhVien;
 import model.NguoiDung;
-import mongodb.SIPAccountCollection;
 import mongodb.CanBoCollection;
 import mongodb.SinhVienCollection;
-import mongodb.UserCollection;
+import mongodb.NguoiDungCollection;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/login")
 public class Login {
 
-	private UserCollection userColl = new UserCollection();
+	private NguoiDungCollection userColl = new NguoiDungCollection();
 
 	// ------------ CREATE LOGIN FORM ------------------------------
 
@@ -53,38 +51,12 @@ public class Login {
 			// Kiem tra passwod co trung khop khong?
 			if (user.getPassword().equals(localUser.getPassword())) {
 
-				// If : Password trung khop -> Luu User vao session
+				// If : Password trung khop
+				// -> Cap nhat trang thai online cho user
+				localUser.setSipStatus(true);
+				userColl.updateSipStatus(localUser.getUserName(), true);
+				// -> Luu User vao session
 				session.setAttribute("User", localUser);
-				
-				// Lay Sip Account va luu vao session
-				SIPAccountCollection sipColl = new SIPAccountCollection();
-				SIPAccount sipAccount = sipColl.getInactiveAccount();
-				session.setAttribute("sipAccount", sipAccount);
-
-				// Kiem tra xem User la Can bo hay Sinh vien:
-				int role = localUser.getRole();
-
-				if (role == 2) { // Neu User la Can Bo
-					// Lay thong tin Can bo tu CSDL
-					CanBoCollection staffColl = new CanBoCollection();
-					CanBo canBo = staffColl.getByFieldName("mscb",
-							localUser.getUserName());
-
-					// Luu thong tin Can bo vao Session
-					session.setAttribute("CanBo", canBo);
-					
-				} else if (role == 3) { // Neu User la Sinh vien
-					// Lay thong tin Sinh vien tu CSDL
-					SinhVienCollection studentColl = new SinhVienCollection();
-					SinhVien sinhVien = studentColl.getByFieldName("mssv",
-							localUser.getUserName());
-					
-					// Luu thong tin Sinh vien vao Session
-					session.setAttribute("SinhVien", sinhVien);
-					
-				} else if (role == 1) {
-
-				}
 
 				// -> Chuyen sang Trang chu
 				return new ModelAndView("redirect:/home-page/index.html");
@@ -109,9 +81,10 @@ public class Login {
 	// LOGOUT:	
 	@RequestMapping(value = "/logout")
 	public ModelAndView logout(HttpSession session) {
-		session.removeAttribute("CanBo");
-		session.removeAttribute("SinhVien");
-		session.removeAttribute("sipAccount");
+		// Cap nhat trang thai Offline cho User
+		NguoiDung user = (NguoiDung) session.getAttribute("User");
+		userColl.updateSipStatus(user.getUserName(), false);
+		
 		session.removeAttribute("User");
 		
 		return new ModelAndView("login-page").addObject("User", new NguoiDung());
