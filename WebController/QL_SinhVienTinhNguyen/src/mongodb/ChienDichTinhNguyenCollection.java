@@ -1,12 +1,17 @@
 package mongodb;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import com.mongodb.DuplicateKeyException;
+import org.bson.Document;
+
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.model.Filters;
 
 import model.ChienDichTinhNguyen;
 
-public class ChienDichTinhNguyenCollection extends CollectionManager<ChienDichTinhNguyen> {
+public class ChienDichTinhNguyenCollection extends CollectionManager1<ChienDichTinhNguyen> {
 	
 	private final String collName = "chiendichtinhnguyen";
 	
@@ -14,29 +19,82 @@ public class ChienDichTinhNguyenCollection extends CollectionManager<ChienDichTi
 		super();
 		createCollIfNotExist(collName, "maChienDich");
 	}
-
-	@Override
-	public void save(ChienDichTinhNguyen obj) throws DuplicateKeyException {
-		// TODO Auto-generated method stub
+	
+	public List<ChienDichTinhNguyen> layDSChuaHetHan(Date ngayHienTai) {
+		FindIterable<Document> docs = collection
+				.find(Filters.gte("ktDangKy", ngayHienTai));
 		
-	}
-
-	@Override
-	public List<ChienDichTinhNguyen> getAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ChienDichTinhNguyen getByFieldName(String fieldName, String value) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void update(ChienDichTinhNguyen obj) {
-		// TODO Auto-generated method stub
+		List<ChienDichTinhNguyen> dsChienDich = new ArrayList<ChienDichTinhNguyen>();
 		
+		for (Document doc : docs) {
+			ChienDichTinhNguyen chienDich = convertToObject(doc);
+			
+			dsChienDich.add(chienDich);
+		}
+		
+		return dsChienDich;
+	}
+	
+	@Override
+	public Document convertToDocument(ChienDichTinhNguyen obj) {
+		Document doc = new Document();
+		doc.append("maChienDich", obj.getMaChienDich());
+		doc.append("diaDiem", obj.getDiaDiem());
+		doc.append("mucDich", obj.getMucDich());
+		doc.append("thoiGianBD", obj.getThoiGianBD());
+		doc.append("thoiGianKT", obj.getThoiGianKT());
+		doc.append("soLuong", obj.getSoLuong());
+		doc.append("yeuCau", obj.getYeuCau());
+		doc.append("keHoach", obj.getKeHoach());
+		doc.append("bdDangKy", obj.getBdDangKy());
+		doc.append("ktDangKy", obj.getKtDangKy());
+		
+		return doc;
+	}
+
+	@Override
+	public ChienDichTinhNguyen convertToObject(Document doc) {
+		ChienDichTinhNguyen chienDich = new ChienDichTinhNguyen(
+				doc.getInteger("maChienDich"),
+				doc.getString("diaDiem"),
+				doc.getString("mucDich"),
+				doc.getDate("thoiGianBD"),
+				doc.getDate("thoiGianKT"),
+				doc.getInteger("soLuong"),
+				doc.getString("yeuCau"),
+				doc.getString("keHoach"),
+				doc.getDate("bdDangKy"),
+				doc.getDate("ktDangKy")
+				);
+		
+		return chienDich;
+	}
+	
+	public static void main(String[] args) {
+		ChienDichTinhNguyenCollection cdColl = new ChienDichTinhNguyenCollection();
+		
+		List<ChienDichTinhNguyen> dsChienDich = cdColl.layDSChuaHetHan(
+				new Date(2017, 05, 05));
+		
+		for (ChienDichTinhNguyen chienDichTinhNguyen : dsChienDich) {
+			System.out.println(chienDichTinhNguyen.getDiaDiem());
+		}
+		
+		/*
+		ChienDichTinhNguyen chienDich = new ChienDichTinhNguyen();
+		chienDich.setMaChienDich(1);
+		chienDich.setDiaDiem("Xã Vĩnh Lộc A, Huyện Hồng Dân, Bạc Liêu");
+		chienDich.setMucDich("Làm lộ bê tông chiều dài 120km");
+		chienDich.setThoiGianBD(new Date(2017, 05, 13));
+		chienDich.setThoiGianKT(new Date(2017, 05, 25));
+		chienDich.setSoLuong(40);
+		chienDich.setYeuCau("La Sinh vien truong dai hoc Can Tho");
+		chienDich.setKeHoach("Chua co ke hoach cu the");
+		chienDich.setBdDangKy(new Date(2017, 04, 13));
+		chienDich.setKtDangKy(new Date(2017, 06, 01));
+		
+		cdColl.save(chienDich);
+		*/
 	}
 
 }

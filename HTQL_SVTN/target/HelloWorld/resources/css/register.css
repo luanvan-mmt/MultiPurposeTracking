@@ -1,0 +1,79 @@
+@CHARSET "UTF-8";
+
+.registerContent {
+	margin-left: 10px;
+	width: 670px;
+	background-color: #f1f1f1;
+}
+
+.tblRegister, .role{
+	width: 90%;
+	margin: 0 50px;
+}
+
+.tblRegister tr td:FIRST-CHILD,
+.role tr td:FIRST-CHILD {
+	width: 180px;
+	color: #333;
+}
+
+.tblRegister tr td,
+.role tr td {
+	padding: 3px 0;
+}
+
+.tblRegister tr td input[type=text] {
+	width: 350px;
+	height: 35px;
+	border-radius: 5px;
+	background-color: white;
+	border: 1px solid #ccc;
+	padding-left: 5px;
+}
+
+.tblRegister tr td select,
+.role tr td select {
+	height: 40px;
+	border-radius: 5px;
+	background-color: white;
+	border: 1px solid #ccc;
+	padding-left: 5px;
+}
+
+.role tr td select {
+	width: 150px;
+}
+
+.tblRegister tr td input[type=text]:hover,
+.tblRegister tr td input[type=text]:focus,
+.tblRegister tr td select:hover,
+.tblRegister tr td select:focus
+{
+	border-color: #268AFF;
+}
+
+#btnSubmit {
+	border-radius: 5px;
+	background-image: linear-gradient(to top, #4481eb 0%, #04befe 100%);
+	border: 1px solid white;
+	width: 150px;
+	height: 40px;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* end */

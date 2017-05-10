@@ -48,7 +48,7 @@
 					<img class="login-shadow" src="../img/bong-login.png" >
 					<div class="note" align="left">
 						<b>* Ghi chú:</b>
-						<p>1. Sinh viên cần phải đăng ký một đợt tình nguyện thì mới được cấp tài khoản đăng nhập vào hệ thống.</p>
+						<p>1. Sinh viên cần phải đăng ký tài khoản trước khi đăng nhập vào đăng nhập vào hệ thống.</p>
 						<p>2. Sinh viên sử dụng mã số sinh viên và mật khẩu được cung cấp trong email để đăng nhập.</p>
 					</div>
 				</td>
@@ -74,7 +74,7 @@
 				</td>
 			</tr>
 		</table>
-		<a href="map.html">Open Map</a>
+		<!-- <a href="map.html">Open Map</a> -->
 	</div>
 	
 	<jsp:include page="footer.jsp"/>

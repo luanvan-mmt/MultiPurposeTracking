@@ -1,5 +1,7 @@
 package controller;
 
+import mongodb.ChienDichTinhNguyenCollection;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +10,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(value = "/chien-dich-tinh-nguyen")
 public class ChienDichTinhNguyen {
+	
+	ChienDichTinhNguyenCollection cdColl = new ChienDichTinhNguyenCollection();
 
 	@RequestMapping(value = "/management")
 	public ModelAndView management() {
@@ -32,8 +36,9 @@ public class ChienDichTinhNguyen {
 	public ModelAndView createHandle(@ModelAttribute model.ChienDichTinhNguyen chienDich) {
 		ModelAndView model = new ModelAndView();
 		
+		cdColl.save(chienDich);
+		
 		model.setViewName("redirect:/chien-dich-tinh-nguyen/management.html");
-		model.addObject("ChienDich", chienDich);
 		
 		return model;
 	}

@@ -6,7 +6,7 @@ import model.CanBo;
 import model.SinhVien;
 import mongodb.CanBoCollection;
 import mongodb.SinhVienCollection;
-import mongodb.UserCollection;
+import mongodb.NguoiDungCollection;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +22,7 @@ public class Regsiter {
 
 	private SinhVienCollection studentColl = new SinhVienCollection();
 	private CanBoCollection staffColl = new CanBoCollection();
-	private UserCollection userColl = new UserCollection();
+	private NguoiDungCollection userColl = new NguoiDungCollection();
 
 	// ------------ CREATE REGISTER FORM ------------------------------
 
@@ -48,7 +48,7 @@ public class Regsiter {
 		studentColl.save(student);
 
 		// Khoi tao user voi password ngau nhien
-		String password = userColl.autoCreateUser(student.getMssv(), 3);
+		String password = userColl.autoCreateUser(student);
 
 		// Gui password dang nhap he thong qua email
 		SendEmail.sendEmail(student.getEmail(), password);
@@ -63,7 +63,7 @@ public class Regsiter {
 		staffColl.save(staff);
 
 		// Khoi tao User:
-		String password = userColl.autoCreateUser(staff.getMscb(), 2);
+		String password = userColl.autoCreateUser(staff);
 
 		// Gui password:
 		SendEmail.sendEmail(staff.getEmail(), password);
