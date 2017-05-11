@@ -22,7 +22,7 @@ window.onload = function() {
 // Dang nhap sip account
 function loginSIP() {
     // Thiet lap thong tin User
-    serverAddr = "192.168.201.200";
+    serverAddr = "192.168.43.200";
     sipAccount = $('#txt-sipAccount').val() + '@' + serverAddr;
     password = $('#txt-password').val();
 
@@ -103,15 +103,15 @@ function handleMessaging(e) {
     // Set lai nguoi nhận BEGIN ...
 
     // Lay ra SIP username
-    var sipUserName = $(this).find('td:last-child').find('input').val();
+    // var sipUserName = $(this).find('td:last-child').find('input').val();
     // Lay ra FullName
-    var fullName = $(this).find('td:first-child').html();
+    // var fullName = $(this).find('td:first-child').html();
 
     // Set text cho Tile Chat box
-    $('#titleName').text(fullName);
+    // $('#titleName').text(fullName);
 
     // Set Sip username cho input txt-sendTo
-    $('#txt-sendTo').val('sip:' + sipUserName + '@' + serverAddr);
+    // $('#txt-sendTo').val('sip:' + sipUserName + '@' + serverAddr);
 
     // ... END Set lai nguoi nhận
 

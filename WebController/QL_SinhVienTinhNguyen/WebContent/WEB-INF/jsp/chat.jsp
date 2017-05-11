@@ -47,7 +47,7 @@
 												<img class="user-icon" src="../img/user-icon.png">
 											</td>
 											<td>
-												<h3 id="titleName">Name</h3>
+												<h3 id="titleName">Hello! <br> <%=displayName %></h3>
 											</td>
 											<td>
 												<div align="right">
@@ -126,6 +126,8 @@
 		</table>
 	</div>
 	
+	<jsp:include page="footer.jsp"/>
+	
 	<input id="txt-sendTo" type="text" value="">
     
     <input id="txt-sipAccount" type="text" value="<%=nguoiDung.getUserNameSip()%>">
@@ -141,6 +143,5 @@
     <audio id="ringbacktone" loop src="../sounds/ringbacktone.wav"> </audio>
     <audio id="dtmfTone" src="../sounds/dtmf.wav"> </audio>
 	
-	<jsp:include page="footer.jsp"/>
 </body>
 </html>
