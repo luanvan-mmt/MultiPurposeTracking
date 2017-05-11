@@ -2,7 +2,9 @@
   "ecmaVersion": 6,
   "libs": [],
   "loadEagerly": [
-    "/media/cqm/DATA/Luan-Van/jsdoc-libraries/SIPml-api.js"
+    "/media/cqm/DATA/Luan-Van/jsdoc-libraries/SIPml-api.js",
+    "/media/cqm/DATA/Luan-Van/jsdoc-libraries/jquery-1.7.2.min.js",
+    "/media/cqm/DATA/Luan-Van/jsdoc-libraries/chat-api.js"
   ],
   "dontLoad": [
     "node_module/**"

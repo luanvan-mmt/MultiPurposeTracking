@@ -1,4 +1,4 @@
-<%@page import="model.NguoiDung"%>
+<%@page import="com.dev.model.NguoiDung"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -84,6 +84,10 @@
 						<td><a href="<%=contextPath%>/chien-dich-tinh-nguyen/management.html">Quản lý chiến dịch</a></td>
 						<td>></td>
 					</tr>
+					<tr>
+						<td><a href="<%=contextPath%>/sinh-vien-tinh-nguyen/initmap.html">Quản lý Sinh viên</a></td>
+						<td>></td>
+					</tr>
 				<%} %>
 				<%if(role == -1 || role == 3) { %>
 					<tr>
@@ -98,6 +102,10 @@
 				<%if(role == 3 || role == 2) { %>
 					<tr>
 						<td><a href="<%=contextPath%>/chat/init.html">Chat</a></td>
+						<td>></td>
+					</tr>
+					<tr>
+						<td><a href="<%=contextPath%>/nguoidung/doiMatKhau.html">Đổi mật khẩu</a></td>
 						<td>></td>
 					</tr>
 					<tr>

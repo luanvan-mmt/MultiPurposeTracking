@@ -1,0 +1,130 @@
+@CHARSET "UTF-8";
+
+#msgContainer {
+	width: 430px;
+	min-height: 400px;
+    margin-left: 5px;
+}
+
+table.tblMessage {
+	border-collapse: collapse;
+	/*Shadow*/
+	-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+table.tblMessage tr td {
+	/*border: 1px solid blue;*/
+	padding: 0 5px;
+}
+
+table.tblInputMsg tr td {
+	border: 0px;
+}
+
+.msgInput, table.tblInputMsg tr:last-child{
+	background-color: #ccc;
+}
+
+.msgInput {
+	margin-top: 5px;
+}
+
+.msgHeader {
+	color: white;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    /*background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);*/
+	background-color: #268AFF;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.29);
+-moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.29);
+box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.29);
+}
+.user-icon {
+	width: 45px;
+}
+.name {
+	margin-top: 5px;
+	font-size: 13px;
+	font-style: italic;
+}
+
+.msgReceived {
+	border-radius: 0 10px 0 10px;
+	background-color: #268AFF;
+	color: white;
+}
+
+.msgSent {
+	border-radius: 10px 0 10px 0;
+	background-color: #f3f3f3;
+
+}
+
+.sent {
+	padding-right: 3px;
+}
+
+.msgReceived, .msgSent {
+	width: 50%;
+	padding: 5px 10px;
+	margin-bottom: 5px;
+	-webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.3);
+	box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.3);
+}
+
+.status {
+	font-size: 13px;
+	font-style: italic;
+	margin-left: 5px;
+}
+
+#messageView {
+	height: 350px;
+	overflow-y: scroll;
+}
+
+.friendList {
+	height: 440px;
+	border: 1px solid  #268AFF;
+	overflow-y: scroll;
+}
+
+.friendHeader {
+	background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);
+}
+.friendHeader h4 {
+	padding: 8px 0;
+	margin: 0;
+	text-align: center;
+	color: white;
+}
+
+table.tblFriends {
+	border-collapse: collapse;
+}
+table.tblFriends tr {
+	border: 1px solid #ccc;
+}
+table.tblFriends tr:hover {
+	background-color: #f3f3f3;
+	cursor: pointer;
+}
+table.tblFriends tr td:last-child {
+	font-size: 13px;
+	font-style: italic;
+}
+table.tblFriends tr td {
+	padding: 8px 5px;
+}
+table#tblFriends tr td input {
+	display: none;
+}
+
+#txt-sendTo, #btn-login, #btn-logout,
+#txt-sipAccount, #txt-password,
+#txt-fullName {
+	/*display: none;*/
+}

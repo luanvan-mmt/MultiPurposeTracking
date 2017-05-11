@@ -40,18 +40,46 @@ body {
 		/* var iconPosition = "/Map/img/red-location-icon.png"; */
 		function initMap() {
 			var center = {lat: 10.000, lng: 105.000 };
-			var iconPosition = "/Map/img/red-location-icon.png";
+			var iconPosition = "../img/user-icon.png";
 			map = new google.maps.Map(document.getElementById('map'), {
 				zoom : 15,
 				center : center,
 				mapTypeId : 'terrain'
 			});
-			addMarker(center, null, null, "You are here");
+			addMarker(center, iconPosition, null, "You are here");
 			// This event listener will call addMarker() when the map is clicked.
 			map.addListener('click', function(event) {
-				addMarker(event.latLng, null, null, event.latLng.lat() + "<br>"
+				addMarker(event.latLng, iconPosition, null, event.latLng.lat() + "<br>"
 						+ event.latLng.lng());
 			});
+			
+
+			var listObj={};
+			function startTime() {				
+				//Lay danh sach user 
+				//var listObj=${listObj};
+				deleteMarkers();
+				
+				$.getJSON('http://192.168.43.103:8080/Map/apiKaa/getAlltUserTrack/cec457653901327bfb6f747d9614e2c183ebc3de',
+						function(data) {
+							listObj = data;
+							for (var i=0; i<listObj.length; i++){
+								var nameObj = listObj[i].event.username;
+								var latObj = parseFloat(listObj[i].event.lat);
+								var lngObj = parseFloat(listObj[i].event.lng);
+								var locationObj = {
+										lat : latObj,
+										lng : lngObj
+									};
+								addMarker(locationObj, iconPosition , nameObj+"", "<a href=\"/Map/tracker/trackUser/username="+nameObj+"\">"+nameObj+"</a><br>"+
+										"<input type=\"button\" value=\"Tracking\" onclick=\"tracking("+nameObj+","+salt+")\" />");
+							}
+					});
+					
+				var t = setTimeout(startTime, 10000);
+			}
+			startTime();
+			
 			//Hien thi search box
 			searchBox();
 		}

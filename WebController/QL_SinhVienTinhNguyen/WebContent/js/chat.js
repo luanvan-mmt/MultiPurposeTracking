@@ -1,3 +1,18 @@
+var serverAddr = "192.168.201.200";
+
+// Thiet lap thong tin User
+var fullName;
+var sipAccount;
+var password;
+
+window.onload = function() {
+    fullName = $('#txt-fullName').val();
+    sipAccount = $('#txt-sipAccount').val() + '@' + serverAddr;
+    password = $('#txt-password').val();
+
+    loginSIP();
+}
+
 $(document).ready(function() {
     // Can khoi tao 2 Button login va logout trong HTML
     setLoginButton('btn-login', 'btn-logout');
@@ -12,22 +27,23 @@ $(document).ready(function() {
 
     prepare();
 
-    // Dang nhap sip account : co the goi khi button onclick
-    $('#btn-login').click(function () {
-        // Thiet lap thong tin User
-        var serverAddr = $('#txt-serverAddr').val()
-        var sipAccount = $('#txt-sipAccount').val() + '@' + serverAddr;
-        var password = $('#txt-password').val();
+    // Lay row tu table
+	var $row = $('#tblFriends').find('tr');
+	// Xu ly su kien onlick tren row
+	$row.on('click', function() {
 
-        setUserInfo('Chau Quoc Minh', sipAccount, password, serverAddr);
+		// Lay ra SIP username
+        var sipUserName = $(this).find('td:last-child').find('input').val();
+        // Lay ra FullName
+		var fullName = $(this).find('td:first-child').html();
 
-        // Thiet lap server:
-        // --> Neu dung May ao Server thi dua vao dia chi server
-        // --> Neu dung Remote Server thi set null
-        setServerAddress(serverAddr);
+        // Set text cho Tile Chat box
+        $('#titleName').text(fullName);
+        clearMessageView();
 
-        onClickLogin();
-    });
+        // Set Sip username cho input txt-sendTo
+        $('#txt-sendTo').val('sip:' + sipUserName + '@' + serverAddr);
+	});
 
     // Xu ly logout:
     $('#btn-logout').click(function() {
@@ -49,7 +65,8 @@ $(document).ready(function() {
         var msg = $('#txtMessage').val();
 
         // createMessageSession();
-        sendMessage($('#txt-sendTo').val(), msg);
+        var fullMessage = $('#txt-fullName').val() + '/' + $('#txtMessage').val();
+        sendMessage($('#txt-sendTo').val(), fullMessage);
 
         displaySendMessage(msg);
 
@@ -57,20 +74,65 @@ $(document).ready(function() {
     });
 });
 
+function clearMessageView() {
+    $('#messageView').html('<div></div>');
+}
+
+function loginSIP() {
+    setUserInfo(fullName, sipAccount, password, serverAddr);
+
+    // Thiet lap server:
+    // --> Neu dung May ao Server thi dua vao dia chi server
+    // --> Neu dung Remote Server thi set null
+    setServerAddress(serverAddr);
+
+    onClickLogin();
+}
+
 function displaySendMessage(message) {
     var displayName = $('#displayName').val();
-    $('#messageView').append("<p>" + displayName + ": " + message + "</p>");
+    var message = '<div class="sent" align="right">' +
+        '<div class="name" id="myName">' + $('#txt-fullName').val() + '</div>' +
+        '<div class="msgSent">' + message + '</div>' +
+        '</div>';
+    $('#messageView').append(message);
 }
 
 // Xu ly tien trinh nhan tin nhan trong ham nay
 // VD: set tin nhan len giao dien, luu vao csdl ...
 // *** Ghi chu: dung su kien "e" de xu ly
 function handleMessaging(e) {
+    // Set lai nguoi nhận BEGIN ... 
+
+    // Lay ra SIP username
+    var sipUserName = $(this).find('td:last-child').find('input').val();
+    // Lay ra FullName
+    var fullName = $(this).find('td:first-child').html();
+
+    // Set text cho Tile Chat box
+    $('#titleName').text(fullName);
+    clearMessageView();
+
+    // Set Sip username cho input txt-sendTo
+    $('#txt-sendTo').val('sip:' + sipUserName + '@' + serverAddr);
+
+    // ... END Set lai nguoi nhận
+
+    // Hien thi tin nhan
     displayReceivedMessage(e);
 }
 
 function displayReceivedMessage(e) {
-    var displayName = 'cqm1';
-    var message = e.getContentString();
-    $('#messageView').append("<p>" + displayName + ": " + message + "</p>");
+    var fullMessage = e.getContentString();
+
+    var fields = fullMessage.split('/');
+
+    var displayName = fields[0];
+    var msg = fields[1]
+
+    var message = '<div class="received">' +
+        '<div class="name">' + displayName + '</div>' +
+        '<div class="msgReceived">' + msg + '</div>' +
+        '</div>';
+    $('#messageView').append(message);
 }
