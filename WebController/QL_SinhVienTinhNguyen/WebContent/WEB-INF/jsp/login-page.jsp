@@ -68,6 +68,7 @@
 								<td>Xã Vĩnh Lộc A, Huyện Hồng Dân, Bạc Liêu</td>
 								<td>LCHSV Bạc Liêu</td>
 							</tr>
+							
 						</table>
 						<a href="#" class="seeAll">Xem tất cả >> </a>
 					</div>
